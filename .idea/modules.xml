@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/SD-2_SlabodchikovRoman.iml" filepath="$PROJECT_DIR$/SD-2_SlabodchikovRoman.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SD-2_SlabodchikovRoman.iml" filepath="$PROJECT_DIR$/.idea/SD-2_SlabodchikovRoman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/backend.iml" filepath="$PROJECT_DIR$/backend/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fapi/fapi.iml" filepath="$PROJECT_DIR$/fapi/fapi.iml" />
     </modules>
   </component>
 </project>
