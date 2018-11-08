@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="mb-3 ">
+    <pre class="card card-block card-header" *ngIf="value">Event select is fired. The heading of the selected tab is: {{value}}</pre>
+  </div>
+  <tabset>
+    <tab heading="Users" class="mt-2" (select)="onSelect($event)">
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Login</th>
+          <th>Password</th>
+          <th>Role</th>
+          <th>Action#1</th>
+          <th>Action#2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td scope="row">{{user.id}}</td>
+          <td>{{user.login}}</td>
+          <td>{{user.password}}</td>
+          <td>{{user.role.role_name}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="_deleteUser(user.id)">Delete</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-outline-primary" (click)="_openModal(template, user)">Edit</button>
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+      <div class="row justify-content-around">
+        <div class="">
+          <button type="button" class="btn btn-dark" (click)="_updateUsers()">Update</button>
+
+        </div>
+        <div class=" ml-auto ">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                  (click)="_openModal(template)">
+            Add user!
+          </button>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Proffessors" class="mt-2" (select)="onSelect($event)">
+
+    </tab>
+    <tab heading="Students" class="mt-2" (select)="onSelect($event)">
+
+    </tab>
+  </tabset>
+</div>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{editMode ? "Edit": "Create"}} new User</h4>
+    <button type="button" class="close pull-right"
+            aria-label="Close" (click)="_closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Login</label>
+      <input class="form-control" name="login" [(ngModel)]="editableBa.login" #login="ngModel" required/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input class="form-control" name="password" [(ngModel)]="editableBa.password" #password="ngModel" required>
+    </div>
+    <div class="form-group">
+      <label>Role</label>
+      <select   [(ngModel)]="temp_id"  class="form-control" >
+        <option  [value]="temp_id" *ngFor=" let role of roles" >{{role.role_name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)=" temp_id == 1 ?editableBa.role=roles[0]:editableBa.role=roles[1]; _addUser()"
+            [disabled]="login.invalid || password.invalid  ">{{editMode ? "Save":
+      "Create"}}
+    </button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="_closeModal()">Close</button>
+
+  </div>
+</ng-template>
+
